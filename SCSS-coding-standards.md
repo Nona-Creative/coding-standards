@@ -2,26 +2,33 @@
 
 *A mostly reasonable approach to CSS and Sass, forked and adpated from the airBnB standard found here: https://github.com/airbnb/css
 
+
 ## Table of Contents
 
-  1. [Terminology](#terminology)
-    - [Rule Declaration](#rule-declaration)
-    - [Selectors](#selectors)
-    - [Properties](#properties)
-  2. [CSS](#css)
-    - [Formatting](#formatting)
-    - [Comments](#comments)
-    - [[A Modular Approach](#a-modular-approach-to-scss)
-    - [ID Selectors](#id-selectors)
-    - [JavaScript hooks](#javascript-hooks)
-    - [Border](#border)
-  3. [Sass](#sass)
-    - [Syntax](#syntax)
-    - [Ordering](#ordering-of-property-declarations)
-    - [Variables](#variables)
-    - [Mixins](#mixins)
-    - [Extend directive](#extend-directive)
-    - [Nested selectors](#nested-selectors)
+<!-- MarkdownTOC depth=3 autolink=true bracket=round style=ordered -->
+
+1. [Terminology](#terminology)
+  1. [Rule declaration](#rule-declaration)
+  2. [Selectors](#selectors)
+  3. [Properties](#properties)
+2. [CSS](#css)
+  1. [Formatting](#formatting)
+  2. [Comments](#comments)
+  3. [ID selectors](#id-selectors)
+  4. [JavaScript hooks](#javascript-hooks)
+  5. [Border](#border)
+3. [Sass / SCSS](#sass--scss)
+  1. [Syntax](#syntax)
+  2. [Ordering of property declarations](#ordering-of-property-declarations)
+  3. [Variables](#variables)
+  4. [Mixins](#mixins)
+  5. [Extend directive](#extend-directive)
+  6. [Nested selectors](#nested-selectors)
+  7. [A Modular Approach to SCSS](#a-modular-approach-to-scss)
+4. [A note about Typography](#a-note-about-typography)
+
+<!-- /MarkdownTOC -->
+
 
 ## Terminology
 
@@ -35,6 +42,7 @@ A “rule declaration” is the name given to a selector (or a group of selector
   line-height: 1.2;
 }
 ```
+
 
 ### Selectors
 
@@ -60,6 +68,7 @@ Finally, properties are what give the selected elements of a rule declaration th
   color: #333;
 }
 ```
+
 
 ## CSS
 
@@ -111,78 +120,13 @@ Finally, properties are what give the selected elements of a rule declaration th
   - Uses of z-index
   - Compatibility or browser-specific hacks
 
-### A Modular Approach to SCSS
-
-While there are many approaches such as OOCSS, BEM and SMACCS, many of these are overly prescriptive, and can add excessive clutter, as well as quickly increasing specificity.  We should always aim for 
-
-* Low specificity
-* uncluttered html
-* reusablity
-* Mobile First Structures
-* Outside-in modularity
-
-#### Use Parent classes to create Modules, then extend and modify
-These goals can be achieve quite easily by following a simple model, that complies with the rest of this style guide.
-
-```scss
-.module {
-  ul {}
-  li {}
-  a {}
-}
-```
-
-We of course have more specific elements amonst multiple tags : 
-```scss
-.module {
-  ul {}
-  li {}
-  a {
-    &.special-one {}
-  }
-  
-}
-```
-
-These should rely on sensibly defaults, ideally set at a tag level.  By working from the most general styles, to the most specific, we able to lighten our CSS and leverage the cascade.  And by Modularising with parent classes, keep our html clean, our selectors light (low specificity) and these 'modules' re-usable.
-
-
-
-**Example**
-
-```html
-<article class="post">
-
-  <h1>Adorable 2BR in the sunny Mission</h1>
-  
-  <div>
-    <p class="lead">Vestibulum id ligula porta felis euismod semper.</p>
-    <p>Vestibulum id ligula porta felis euismod semper.</p>
-    <p>Vestibulum id ligula porta felis euismod semper.</p>
-  </div>
-
-</article>
-```
-
-We might style it as follows: 
-
-```scss
-.post {
-  h1 {}
-  div {}
-  p {
-    //... default styles
-    &.lead {}
-  }
-}
-```
-
 
 ### ID selectors
 
 While it is possible to select elements by ID in CSS, it should generally be considered an anti-pattern. ID selectors introduce an unnecessarily high level of [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) to your rule declarations, and they are not reusable.
 
 For more on this subject, read [CSS Wizardry's article](http://csswizardry.com/2014/07/hacks-for-dealing-with-specificity/) on dealing with specificity.
+
 
 ### JavaScript hooks
 
@@ -193,6 +137,7 @@ We recommend creating JavaScript-specific classes to bind to, prefixed with `.js
 ```html
 <button class="btn btn-primary js-request-to-book">Request to Book</button>
 ```
+
 
 ### Border
 
@@ -214,7 +159,9 @@ Use `0` instead of `none` to specify that a style has no border.
 }
 ```
 
-## Sass
+
+## Sass / SCSS
+
 
 ### Syntax
 
@@ -264,17 +211,21 @@ Use `0` instead of `none` to specify that a style has no border.
     }
     ```
 
+
 ### Variables
 
 Prefer dash-cased variable names (e.g. `$my-variable`) over camelCased or snake_cased variable names. It is acceptable to prefix variable names that are intended to be used only within the same file with an underscore (e.g. `$_my-variable`).
+
 
 ### Mixins
 
 Mixins should be used to DRY up your code, add clarity, or abstract complexity--in much the same way as well-named functions. Mixins that accept no arguments can be useful for this, but note that if you are not compressing your payload (e.g. gzip), this may contribute to unnecessary code duplication in the resulting styles.
 
+
 ### Extend directive
 
 `@extend` should be avoided because it has unintuitive and potentially dangerous behavior, especially when used with nested selectors. Even extending top-level placeholder selectors can cause problems if the order of selectors ends up changing later (e.g. if they are in other files and the order the files are loaded shifts). Gzipping should handle most of the savings you would have gained by using `@extend`, and you can DRY up your stylesheets nicely with mixins.
+
 
 ### Nested selectors
 
@@ -300,3 +251,93 @@ When selectors become this long, you're likely writing CSS that is:
 Again: **never nest ID selectors!**
 
 If you must use an ID selector in the first place (and you should really try not to), they should never be nested. If you find yourself doing this, you need to revisit your markup, or figure out why such strong specificity is needed. If you are writing well formed HTML and CSS, you should **never** need to do this.
+
+
+### A Modular Approach to SCSS
+
+While there are many approaches such as OOCSS, BEM and SMACCS, many of these are overly prescriptive, and can add excessive clutter, as well as quickly increasing specificity.  We should always aim for 
+
+* Low specificity
+* uncluttered html
+* reusablity
+* Mobile First Structures
+* Outside-in modularity
+
+
+#### Use Parent classes to create Modules, then extend and modify
+These goals can be achieve quite easily by following a simple model, that complies with the rest of this style guide.
+
+```scss
+.module {
+  ul {}
+  li {}
+  a {}
+}
+```
+
+We of course have more specific elements amonst multiple tags : 
+```scss
+.module {
+  ul {}
+  li {}
+  a {
+    &.special-one {}
+  }
+  
+}
+```
+
+These should rely on sensible defaults, ideally set at a tag level.  By working from the most general styles, to the most specific, we're able to lighten our CSS and leverage 'the cascade'.  By modularising with parent classes, keep our html clean, our selectors light (low specificity) and these 'modules' re-usable.
+
+
+
+**Example**
+
+```html
+<article class="post">
+
+  <h1>Adorable 2BR in the sunny Mission</h1>
+  
+  <div>
+    <p class="lead">Vestibulum id ligula porta felis euismod semper.</p>
+    <p>Vestibulum id ligula porta felis euismod semper.</p>
+    <p>Vestibulum id ligula porta felis euismod semper.</p>
+  </div>
+
+</article>
+```
+
+We might style it as follows: 
+
+```scss
+.post {
+  h1 {}
+  div {}
+  p {
+    //... default styles
+    &.lead {}
+  }
+}
+```
+
+
+#### Mobile First
+Our SCSS should always follow a mobile first approach.  The only trick to this is planning and approach, if you're not starting with the mobile UI, you're doing it wrong.  Heres a very simple expamle:
+
+```scss
+.thing  {
+  //... some props
+
+  @media screen and (min-width: 320px) {
+    //.. stuff for a biggger screen
+  }
+}
+```
+
+
+## A note about Typography
+Well structured typography is the foundation of a sound layout, and as such, great care should be taken in managing the typographic rules of any high quality design. Secondly, by relating all the other dimensions of the layout to your typography we can achieve both a natural pleasing visual harmony and extreme rewsponsiveness.
+
+The key to this, is to use either REM or EM units throughout your SCSS, relating all dimensions to a typographic size.  REM units are prefferable as they provide a standardised base (related always to the body font size), but it may be useful at times to employ EM units in specific circumstances, were you need an alterantive scale for a component.
+
+
