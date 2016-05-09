@@ -33,6 +33,7 @@ A mostly reasonable approach to CSS and Sass, forked and adapted from the airBnB
   1. [Units](#units)
   2. [Font Replacement](#font-replacement)
 5. [Your Shameful Styles](#your-shameful-styles)
+6. [License](#license)
 
 <!-- /MarkdownTOC -->
 
@@ -403,3 +404,31 @@ To help future you, and everyone else not curse your name, use the `_shame.scss`
 * temporary styles (ie: hiding this thing until we fix that bug)
 * I'm sure you'll think of other things
 
+
+
+## License
+
+(The MIT License)
+
+Copyright (c) 2016 Nona Creative
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+**[⬆ back to top](#table-of-contents)**
