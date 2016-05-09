@@ -1,6 +1,6 @@
 # Nona CSS / Sass Styleguide
 
-*A mostly reasonable approach to CSS and Sass, forked and adpated from the airBnB standard found here: https://github.com/airbnb/css
+A mostly reasonable approach to CSS and Sass, forked and adapted from the airBnB standard found here: https://github.com/airbnb/css
 
 
 ## Table of Contents
@@ -32,8 +32,8 @@
 
 ## Terminology
 
-### Rule declaration
 
+### Rule declaration
 A “rule declaration” is the name given to a selector (or a group of selectors) with an accompanying group of properties. Here's an example:
 
 ```css
@@ -58,6 +58,7 @@ In a rule declaration, “selectors” are the bits that determine which element
 }
 ```
 
+
 ### Properties
 
 Finally, properties are what give the selected elements of a rule declaration their style. Properties are key-value pairs, and a rule declaration can contain one or more property declarations. Property declarations look like this:
@@ -71,6 +72,7 @@ Finally, properties are what give the selected elements of a rule declaration th
 
 
 ## CSS
+
 
 ### Formatting
 
@@ -112,7 +114,10 @@ Finally, properties are what give the selected elements of a rule declaration th
 }
 ```
 
+
 ### Comments
+
+Sass supports standard multiline CSS comments with `/* */`, as well as single-line comments with `//`. It is important to note that the multiline comments are preserved in the CSS output (where possible), while the single-line comments are removed.
 
 * Prefer line comments (`//` in Sass-land) to block comments.
 * Prefer comments on their own line. Avoid end-of-line comments.
@@ -121,20 +126,20 @@ Finally, properties are what give the selected elements of a rule declaration th
   - Compatibility or browser-specific hacks
 
 
-### ID selectors
+### ID Selectors
 
 While it is possible to select elements by ID in CSS, it should generally be considered an anti-pattern. ID selectors introduce an unnecessarily high level of [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) to your rule declarations, and they are not reusable.
 
 For more on this subject, read [CSS Wizardry's article](http://csswizardry.com/2014/07/hacks-for-dealing-with-specificity/) on dealing with specificity.
 
 
-### JavaScript hooks
+### JavaScript Hooks
 
 Avoid binding to the same class in both your CSS and JavaScript. Conflating the two often leads to, at a minimum, time wasted during refactoring when a developer must cross-reference each class they are changing, and at its worst, developers being afraid to make changes for fear of breaking functionality.
 
 We recommend creating JavaScript-specific classes to bind to, prefixed with `.js-`:
 
-```html
+```HTML
 <button class="btn btn-primary js-request-to-book">Request to Book</button>
 ```
 
@@ -159,6 +164,34 @@ Use `0` instead of `none` to specify that a style has no border.
 }
 ```
 
+### Shorthand Selectors
+
+Use shorthand when specifying multiple values. Remember longhand can be shorter for single values.
+
+**Bad**
+
+```css
+.foo {
+  border-top: 5px;
+  border-right: 3px;
+  border-bottom: 5px;
+  border-right: 3px;
+}
+```
+
+**Good**
+
+```css
+.foo {
+  border: 5px 3px;
+}
+```
+
+
+### !important
+
+Never use `!important` reactively to get yourself out of nasty specificity situations as it overrides just about everything. This messes with the "cascading" of styles that is at the core of CSS. Rework your CSS and combat these issues by refactoring your selectors. Keeping selectors short and avoiding IDs will help you out here massively.
+
 
 ## Sass / SCSS
 
@@ -168,13 +201,14 @@ Use `0` instead of `none` to specify that a style has no border.
 * Use the `.scss` syntax, never the original `.sass` syntax
 * Order your regular CSS and `@include` declarations logically (see below)
 
+
 ### Ordering of property declarations
 
 1. Property declarations
 
     List all standard property declarations, anything that isn't an `@include` or a nested selector.
 
-    ```scss
+    ```SCSS
     .btn-green {
       background: green;
       font-weight: bold;
@@ -186,7 +220,7 @@ Use `0` instead of `none` to specify that a style has no border.
 
     Grouping `@include`s at the end makes it easier to read the entire selector.
 
-    ```scss
+    ```SCSS
     .btn-green {
       background: green;
       font-weight: bold;
@@ -199,7 +233,7 @@ Use `0` instead of `none` to specify that a style has no border.
 
     Nested selectors, _if necessary_, go last, and nothing goes after them. Add whitespace between your rule declarations and nested selectors, as well as between adjacent nested selectors. Apply the same guidelines as above to your nested selectors.
 
-    ```scss
+    ```SCSS
     .btn {
       background: green;
       font-weight: bold;
@@ -224,14 +258,14 @@ Mixins should be used to DRY up your code, add clarity, or abstract complexity--
 
 ### Extend directive
 
-`@extend` should be avoided because it has unintuitive and potentially dangerous behavior, especially when used with nested selectors. Even extending top-level placeholder selectors can cause problems if the order of selectors ends up changing later (e.g. if they are in other files and the order the files are loaded shifts). Gzipping should handle most of the savings you would have gained by using `@extend`, and you can DRY up your stylesheets nicely with mixins.
+`@extend` should be avoided because it has unintuitive and potentially dangerous behaviour, especially when used with nested selectors. Even extending top-level placeholder selectors can cause problems if the order of selectors ends up changing later (e.g. if they are in other files and the order the files are loaded shifts). Gzipping should handle most of the savings you would have gained by using `@extend`, and you can DRY up your stylesheets nicely with mixins.
 
 
 ### Nested selectors
 
 **Do not nest selectors more than three levels deep!**
 
-```scss
+```SCSS
 .page-container {
   .content {
     .profile {
@@ -255,19 +289,20 @@ If you must use an ID selector in the first place (and you should really try not
 
 ### A Modular Approach to SCSS
 
-While there are many approaches such as OOCSS, BEM and SMACCS, many of these are overly prescriptive, and can add excessive clutter, as well as quickly increasing specificity.  We should always aim for 
+While there are many approaches such as OOCSS, BEM and SMACCS, many of these are overly prescriptive, and can add excessive clutter, as well as quickly increasing specificity.  We should always aim for
 
-* Low specificity
-* uncluttered html
-* reusablity
+* Low Specificity
+* Uncluttered HTML
+* Reusability
 * Mobile First Structures
-* Outside-in modularity
+* Outside-in Modularity
 
 
-#### Use Parent classes to create Modules, then extend and modify
-These goals can be achieve quite easily by following a simple model, that complies with the rest of this style guide.
+### Use Parent classes to create Modules, then extend and modify
 
-```scss
+These goals can be achieved quite easily by following a simple model, that complies with the rest of this style guide.
+
+```SCSS
 .module {
   ul {}
   li {}
@@ -275,29 +310,26 @@ These goals can be achieve quite easily by following a simple model, that compli
 }
 ```
 
-We of course have more specific elements amonst multiple tags : 
-```scss
+We of course have more specific elements amongst multiple tags :
+```SCSS
 .module {
   ul {}
   li {}
   a {
     &.special-one {}
   }
-  
 }
 ```
 
 These should rely on sensible defaults, ideally set at a tag level.  By working from the most general styles, to the most specific, we're able to lighten our CSS and leverage 'the cascade'.  By modularising with parent classes, keep our html clean, our selectors light (low specificity) and these 'modules' re-usable.
 
-
-
 **Example**
 
-```html
+```HTML
 <article class="post">
 
   <h1>Adorable 2BR in the sunny Mission</h1>
-  
+
   <div>
     <p class="lead">Vestibulum id ligula porta felis euismod semper.</p>
     <p>Vestibulum id ligula porta felis euismod semper.</p>
@@ -307,37 +339,47 @@ These should rely on sensible defaults, ideally set at a tag level.  By working 
 </article>
 ```
 
-We might style it as follows: 
+We might style it as follows:
 
-```scss
+```SCSS
 .post {
   h1 {}
   div {}
   p {
-    //... default styles
+    // ... default styles
     &.lead {}
   }
 }
 ```
 
 
-#### Mobile First
-Our SCSS should always follow a mobile first approach.  The only trick to this is planning and approach, if you're not starting with the mobile UI, you're doing it wrong.  Heres a very simple expamle:
+### Mobile First
 
-```scss
+Our SCSS should always follow a mobile first approach.  The only trick to this is planning and approach, if you're not starting with the mobile UI, you're doing it wrong.  Heres a very simple example:
+
+```SCSS
 .thing  {
-  //... some props
+  // ... Some properties
 
   @media screen and (min-width: 320px) {
-    //.. stuff for a biggger screen
+    // ... Stuff for a bigger screen
   }
 }
 ```
 
 
-## A note about Typography
-Well structured typography is the foundation of a sound layout, and as such, great care should be taken in managing the typographic rules of any high quality design. Secondly, by relating all the other dimensions of the layout to your typography we can achieve both a natural pleasing visual harmony and extreme rewsponsiveness.
+## Typography
 
-The key to this, is to use either REM or EM units throughout your SCSS, relating all dimensions to a typographic size.  REM units are prefferable as they provide a standardised base (related always to the body font size), but it may be useful at times to employ EM units in specific circumstances, were you need an alterantive scale for a component.
+Well structured typography is the foundation of a sound layout, and as such, great care should be taken in managing the typographic rules of any high quality design. Secondly, by relating all the other dimensions of the layout to your typography we can achieve both a natural pleasing visual harmony and extreme responsiveness.
 
 
+### Units
+
+It is key to use either `REM` or `EM` units throughout your SCSS, relating all dimensions to a typographic size.  `REM` units are preferable as they provide a standardised base (relative always to the body font size), but it may be useful at times to employ `EM` units in specific circumstances where an alternative scale for a component is needed.
+
+
+### Font Replacement
+
+`@font-face` should be used for font replacement where possible - ensuring that the font can be safely used in .woff format on the web in agreement with its licensing agreement.
+
+Always specify a .woff2 as well as a .woff font to take advantage of the greater compression the former offers. .ttf is required for IE8.
