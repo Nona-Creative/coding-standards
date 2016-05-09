@@ -14,18 +14,22 @@ A mostly reasonable approach to CSS and Sass, forked and adapted from the airBnB
 2. [CSS](#css)
   1. [Formatting](#formatting)
   2. [Comments](#comments)
-  3. [ID selectors](#id-selectors)
-  4. [JavaScript hooks](#javascript-hooks)
+  3. [ID Selectors](#id-selectors)
+  4. [JavaScript Hooks](#javascript-hooks)
   5. [Border](#border)
+  6. [Shorthand Selectors](#shorthand-selectors)
+  7. [!important](#important)
 3. [Sass / SCSS](#sass--scss)
   1. [Syntax](#syntax)
-  2. [Ordering of property declarations](#ordering-of-property-declarations)
+  2. [Ordering of Property Declarations](#ordering-of-property-declarations)
   3. [Variables](#variables)
   4. [Mixins](#mixins)
-  5. [Extend directive](#extend-directive)
-  6. [Nested selectors](#nested-selectors)
+  5. [Extend Directive](#extend-directive)
+  6. [Nested Selectors](#nested-selectors)
   7. [A Modular Approach to SCSS](#a-modular-approach-to-scss)
-4. [A note about Typography](#a-note-about-typography)
+4. [Typography](#typography)
+  1. [Units](#units)
+  2. [Font Replacement](#font-replacement)
 
 <!-- /MarkdownTOC -->
 
@@ -202,7 +206,7 @@ Never use `!important` reactively to get yourself out of nasty specificity situa
 * Order your regular CSS and `@include` declarations logically (see below)
 
 
-### Ordering of property declarations
+### Ordering of Property Declarations
 
 1. Property declarations
 
@@ -256,12 +260,12 @@ Prefer dash-cased variable names (e.g. `$my-variable`) over camelCased or snake_
 Mixins should be used to DRY up your code, add clarity, or abstract complexity--in much the same way as well-named functions. Mixins that accept no arguments can be useful for this, but note that if you are not compressing your payload (e.g. gzip), this may contribute to unnecessary code duplication in the resulting styles.
 
 
-### Extend directive
+### Extend Directive
 
 `@extend` should be avoided because it has unintuitive and potentially dangerous behaviour, especially when used with nested selectors. Even extending top-level placeholder selectors can cause problems if the order of selectors ends up changing later (e.g. if they are in other files and the order the files are loaded shifts). Gzipping should handle most of the savings you would have gained by using `@extend`, and you can DRY up your stylesheets nicely with mixins.
 
 
-### Nested selectors
+### Nested Selectors
 
 **Do not nest selectors more than three levels deep!**
 
@@ -310,7 +314,7 @@ These goals can be achieved quite easily by following a simple model, that compl
 }
 ```
 
-We of course have more specific elements amongst multiple tags :
+We of course have more specific elements amongst multiple tags:
 ```SCSS
 .module {
   ul {}
@@ -346,7 +350,7 @@ We might style it as follows:
   h1 {}
   div {}
   p {
-    // ... default styles
+    // ... Default Styles
     &.lead {}
   }
 }
@@ -380,6 +384,6 @@ It is key to use either `REM` or `EM` units throughout your SCSS, relating all d
 
 ### Font Replacement
 
-`@font-face` should be used for font replacement where possible - ensuring that the font can be safely used in .woff format on the web in agreement with its licensing agreement.
+`@font-face` should be used for font replacement where possible - ensuring that the font can be safely used in `.woff` format on the web in agreement with its licensing agreement.
 
-Always specify a .woff2 as well as a .woff font to take advantage of the greater compression the former offers. .ttf is required for IE8.
+Always specify a `.woff2` as well as a `.woff` font to take advantage of the greater compression the former offers. `.ttf` is required for IE8.
