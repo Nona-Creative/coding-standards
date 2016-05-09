@@ -27,9 +27,12 @@ A mostly reasonable approach to CSS and Sass, forked and adapted from the airBnB
   5. [Extend Directive](#extend-directive)
   6. [Nested Selectors](#nested-selectors)
   7. [A Modular Approach to SCSS](#a-modular-approach-to-scss)
+  8. [Use Parent classes to create Modules, then extend and modify](#use-parent-classes-to-create-modules-then-extend-and-modify)
+  9. [Mobile First](#mobile-first)
 4. [Typography](#typography)
   1. [Units](#units)
   2. [Font Replacement](#font-replacement)
+5. [Your Shameful Styles](#your-shameful-styles)
 
 <!-- /MarkdownTOC -->
 
@@ -257,7 +260,7 @@ Prefer dash-cased variable names (e.g. `$my-variable`) over camelCased or snake_
 
 ### Mixins
 
-Mixins should be used to DRY up your code, add clarity, or abstract complexity--in much the same way as well-named functions. Mixins that accept no arguments can be useful for this, but note that if you are not compressing your payload (e.g. gzip), this may contribute to unnecessary code duplication in the resulting styles.
+Mixins (`@include`) should be used to DRY up your code, add clarity, or abstract complexity--in much the same way as well-named functions. Mixins that accept no arguments can be useful for this, but note that if you are not compressing your payload (e.g. gzip), this may contribute to unnecessary code duplication in the resulting styles.
 
 
 ### Extend Directive
@@ -387,3 +390,16 @@ It is key to use either `REM` or `EM` units throughout your SCSS, relating all d
 `@font-face` should be used for font replacement where possible - ensuring that the font can be safely used in `.woff` format on the web in agreement with its licensing agreement.
 
 Always specify a `.woff2` as well as a `.woff` font to take advantage of the greater compression the former offers. `.ttf` is required for IE8.
+
+
+## Your Shameful Styles
+
+There's often browser hacks, or fidly last minute tweaks that should be neater, and small things we want to test.  When doing things in a "less that ideal way" it should be done in an `_shame.scss`_ that gets included last.  This allows us to keep it out of our main styles, where, if we're honest, we'll probably never find it again.
+
+To help future you, and everyone else not curse your name, use the `_shame.scss` file for:
+
+* Browser or device specific weirdness
+* quick tests or overrides
+* temporary styles (ie: hiding this thing until we fix that bug)
+* I'm sure you'll think of other things
+
