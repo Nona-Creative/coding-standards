@@ -13,7 +13,7 @@ PSR 3, 6, & 7 refer to logging, chaching and http messages respectively, and sho
 
 
 ## PHP Best Practice
-For general patterns, and good practice we should reference "php the right way", this is an extensive resource, is great from starting out with PHP, to more advanced information.
+For general patterns, and good practice we should reference "php the right way", this is an extensive resource, its great whether you're starting out with PHP, or looking for more advanced information.
 
 [Read "PHP the Right Way"](http://www.phptherightway.com/)
 
@@ -21,5 +21,3 @@ Another great general resource is the 10up engineering site, which covers perfor
 
 [Read the 10up Engineering PHP site](https://10up.github.io/Engineering-Best-Practices/php/)
 
-
-F
