@@ -1,5 +1,5 @@
 # PHP
-Our primary, and regular, use of PHP is in WordPress, though we're aiming to use the 'popular' PSR PHP coding standards.
+Our primary, and regular, use of PHP is in WordPress, though we're aiming to use the 'popular' PSR PHP coding standards, over the wordpress standards.
 
 
 ## PSR 
