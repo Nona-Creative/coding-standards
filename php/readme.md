@@ -11,6 +11,9 @@ These can be found [here](https://github.com/Nona-Creative/fig-standards/tree/ma
 
 PSR 3, 6, & 7 refer to logging, chaching and http messages respectively, and should be referenced if you need these.
 
+### Standards amendments
+We use 2 space indentation, and 120 character line lengths.  We currently do not use autoloading in WordPress but are working on a solution for that.
+
 
 ## PHP Best Practice
 For general patterns, and good practice we should reference "php the right way", this is an extensive resource, its great whether you're starting out with PHP, or looking for more advanced information.
