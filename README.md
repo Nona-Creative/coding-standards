@@ -5,8 +5,9 @@ This is the living collection of coding standards for Nona Creative.
 1. [Javascript ES5](/javascript/es5-standard.md) (Legacy)
 2. [Ruby](/Ruby)
 3. [SCSS](/scss)
-4. [PHP](#) - TODO
-5. [WordPress](#) - TODO
+4. [PHP](/php)
+5. [BASH](#) - Coming soon.
+
 
 ## License (MIT)
 
